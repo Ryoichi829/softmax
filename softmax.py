@@ -21,8 +21,8 @@ st.write()
 
 st.write('値を入力して実行をクリックしてください')
 
-# 5つのカラムを作成
-col1, col2, col3, col4, col5 = st.columns(5)
+# ３つのカラムを作成
+col1, col2, col3 = st.columns(3)
 with col1:
     input1 = st.text_input('input1', '0.0')
     st.session_state.input1 = float(input1)
@@ -32,28 +32,17 @@ with col2:
 with col3:
     input3 = st.text_input('input3', '0.0')
     st.session_state.input3 = float(input3)
-with col4:
-    input4 = st.text_input('input4', '0.0')
-    st.session_state.input4 = float(input4)
-with col5:
-    input5 = st.text_input('input5', '0.0')
-    st.session_state.input5 = float(input5)
 
 if st.button("実行"):
     
-    a = np.array([st.session_state.input1, st.session_state.input2, st.session_state.input3,
-                  st.session_state.input4, st.session_state.input5])
+    a = np.array([st.session_state.input1, st.session_state.input2, st.session_state.input3])
     y = softmax_function(a)
 
     # 入力内容を取得
-    col1_output, col2_output, col3_output, col4_output, col5_output = st.columns(5)
+    col1_output, col2_output, col3_output = st.columns(3)
     with col1_output:
         st.write('{:0.3f}'.format(y[0]))
     with col2_output:
         st.write('{:0.3f}'.format(y[1]))
     with col3_output:
         st.write('{:0.3f}'.format(y[2]))
-    with col4_output:
-        st.write('{:0.3f}'.format(y[3]))
-    with col5_output:
-        st.write('{:0.3f}'.format(y[4]))
